@@ -160,18 +160,6 @@
 #	include <stdint.h>
 #endif
 
-#if defined(HL_VCC) || defined(HL_MINGW)
-#	define EXPORT __declspec( dllexport )
-#	define IMPORT __declspec( dllimport )
-#else
-#if defined(HL_GCC) || defined(HL_CLANG)
-#	define EXPORT __attribute__((visibility("default")))
-#else
-#	define EXPORT
-#endif
-#	define IMPORT extern
-#endif
-
 #ifdef HL_64
 #	define HL_WSIZE 8
 #	define IS_64	1
@@ -207,13 +195,7 @@ typedef unsigned long long uint64;
 #include <stdio.h>
 #include <memory.h>
 
-#if defined(LIBHL_EXPORTS)
-#define HL_API extern EXPORT
-#elif defined(LIBHL_STATIC)
 #define HL_API extern
-#else
-#define	HL_API IMPORT
-#endif
 
 #if defined(HL_VCC)
 #define HL_INLINE __inline

@@ -56,3 +56,4 @@ args.txt
 /other/benchs/hlc
 
 /cmake-build-*/
+/.idea/

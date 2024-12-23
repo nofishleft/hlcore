@@ -5,7 +5,7 @@ set(HL_VERSION_MINOR 14)
 set(HL_VERSION_PATCH 0)
 set(HL_VERSION ${HL_VERSION_MAJOR}.${HL_VERSION_MINOR}.${HL_VERSION_PATCH})
 
-project(hlcore VERSION ${HL_VERSION} LANGUAGES C)
+project(nofishleft_hlcore VERSION ${HL_VERSION} LANGUAGES C)
 
 option(HL_NO_THREADS "Force Single Threaded" ON)
 
@@ -115,26 +115,27 @@ else()
     set(hlcore_libraries "m" "dl" "pthread")
 endif()
 
-add_library(hlcore STATIC
+add_library(nofishleft_hlcore STATIC
         ${pcre_srcs}
         ${hlcore_srcs}
         ${std_srcs}
 )
+add_library("nofishleft::hlcore" ALIAS nofishleft_hlcore)
 
-target_include_directories(hlcore
+target_include_directories(nofishleft_hlcore
         PRIVATE ${hlcore_private_include}
         PUBLIC ${hlcore_public_include}
 )
 
-target_compile_definitions(hlcore
+target_compile_definitions(nofishleft_hlcore
         PRIVATE ${hlcore_private_definitions}
         PUBLIC ${hlcore_public_definitions}
 )
 
-target_link_libraries(hlcore ${hlcore_libraries})
+target_link_libraries(nofishleft_hlcore ${hlcore_libraries})
 
-set_property(TARGET hlcore PROPERTY C_STANDARD 11)
-set_property(TARGET hlcore PROPERTY C_STANDARD_REQUIRED ON)
+set_property(TARGET nofishleft_hlcore PROPERTY C_STANDARD 11)
+set_property(TARGET nofishleft_hlcore PROPERTY C_STANDARD_REQUIRED ON)
 
 #set_target_properties(hlcore
 #    PROPERTIES
